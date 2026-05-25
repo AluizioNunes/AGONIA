@@ -36,8 +36,8 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen w-full">
+      <div className="w-full px-4 py-8">
         <header className="mb-12 jarvis-fade-in">
           <div className="flex items-center gap-4 mb-4">
             <div className="w-3 h-3 bg-cyan-400 rounded-full jarvis-pulse"></div>
@@ -56,32 +56,32 @@ export default function Home() {
             </CardContent>
           </Card>
 
-          <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.2s' }}>
+          <Card className="jarvis-border-purple jarvis-glow-purple jarvis-fade-in" style={{ animationDelay: '0.2s' }}>
             <CardHeader className="pb-3">
-              <CardTitle className="text-cyan-400 text-sm tracking-widest uppercase">SERVER STATUS</CardTitle>
+              <CardTitle className="text-purple-400 text-sm tracking-widest uppercase">SERVER STATUS</CardTitle>
             </CardHeader>
             <CardContent>
-              <Badge variant={error ? 'destructive' : 'default'} className={error ? 'bg-red-600 jarvis-glow' : 'bg-cyan-600 jarvis-glow'}>
+              <Badge variant={error ? 'destructive' : 'default'} className={error ? 'bg-red-600 jarvis-glow' : 'bg-purple-600 jarvis-glow-purple'}>
                 {error ? 'OFFLINE' : 'ONLINE'}
               </Badge>
             </CardContent>
           </Card>
 
-          <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.3s' }}>
+          <Card className="jarvis-border-green jarvis-glow-green jarvis-fade-in" style={{ animationDelay: '0.3s' }}>
             <CardHeader className="pb-3">
-              <CardTitle className="text-cyan-400 text-sm tracking-widest uppercase">OLLAMA PORT</CardTitle>
+              <CardTitle className="text-green-400 text-sm tracking-widest uppercase">OLLAMA PORT</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-4xl font-bold jarvis-text-glow text-cyan-300">11434</div>
+              <div className="text-4xl font-bold jarvis-text-glow-green text-green-300">11434</div>
             </CardContent>
           </Card>
 
-          <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.4s' }}>
+          <Card className="jarvis-border jarvis-glow-orange jarvis-fade-in" style={{ animationDelay: '0.4s' }}>
             <CardHeader className="pb-3">
-              <CardTitle className="text-cyan-400 text-sm tracking-widest uppercase">STORAGE</CardTitle>
+              <CardTitle className="text-orange-400 text-sm tracking-widest uppercase">STORAGE</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-4xl font-bold jarvis-text-glow text-cyan-300">
+              <div className="text-4xl font-bold text-orange-300">
                 {formatSize(models.reduce((acc, m) => acc + m.size, 0))}
               </div>
             </CardContent>
@@ -122,32 +122,32 @@ export default function Home() {
             </CardContent>
           </Card>
 
-          <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.6s' }}>
+          <Card className="jarvis-border-purple jarvis-glow-purple jarvis-fade-in" style={{ animationDelay: '0.6s' }}>
             <CardHeader>
-              <CardTitle className="text-cyan-300 tracking-widest uppercase">SERVICES</CardTitle>
-              <CardDescription className="text-cyan-400/60">Container status</CardDescription>
+              <CardTitle className="text-purple-300 tracking-widest uppercase">SERVICES</CardTitle>
+              <CardDescription className="text-purple-400/60">Container status</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="flex items-center justify-between p-3 jarvis-border">
-                <span className="text-cyan-300 uppercase">OLLAMA</span>
-                <Badge className="bg-cyan-600 jarvis-glow">RUNNING</Badge>
+              <div className="flex items-center justify-between p-3 jarvis-border-purple bg-purple-950/20">
+                <span className="text-purple-300 uppercase">OLLAMA</span>
+                <Badge className="bg-green-600 jarvis-glow-green">RUNNING</Badge>
               </div>
-              <div className="flex items-center justify-between p-3 jarvis-border">
-                <span className="text-cyan-300 uppercase">QDRANT</span>
-                <Badge className="bg-cyan-600 jarvis-glow">RUNNING</Badge>
+              <div className="flex items-center justify-between p-3 jarvis-border-purple bg-purple-950/20">
+                <span className="text-purple-300 uppercase">QDRANT</span>
+                <Badge className="bg-green-600 jarvis-glow-green">RUNNING</Badge>
               </div>
-              <div className="flex items-center justify-between p-3 jarvis-border">
-                <span className="text-cyan-300 uppercase">FRONTEND</span>
-                <Badge className="bg-cyan-600 jarvis-glow">RUNNING</Badge>
+              <div className="flex items-center justify-between p-3 jarvis-border-purple bg-purple-950/20">
+                <span className="text-purple-300 uppercase">FRONTEND</span>
+                <Badge className="bg-green-600 jarvis-glow-green">RUNNING</Badge>
               </div>
             </CardContent>
           </Card>
         </div>
 
-        <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.7s' }}>
+        <Card className="jarvis-border-green jarvis-glow-green jarvis-fade-in" style={{ animationDelay: '0.7s' }}>
           <CardHeader>
-            <CardTitle className="text-cyan-300 tracking-widest uppercase">INSTALLED MODELS</CardTitle>
-            <CardDescription className="text-cyan-400/60">Available LLM models</CardDescription>
+            <CardTitle className="text-green-300 tracking-widest uppercase">INSTALLED MODELS</CardTitle>
+            <CardDescription className="text-green-400/60">Available LLM models</CardDescription>
           </CardHeader>
           <CardContent>
             {error && (
@@ -157,12 +157,12 @@ export default function Home() {
             )}
 
             {loading ? (
-              <div className="text-center py-8 text-cyan-400/60 uppercase">LOADING MODELS...</div>
+              <div className="text-center py-8 text-green-400/60 uppercase">LOADING MODELS...</div>
             ) : models.length === 0 ? (
-              <div className="text-center py-8 text-cyan-400/60">
+              <div className="text-center py-8 text-green-400/60">
                 <p className="mb-4 uppercase">NO MODELS INSTALLED</p>
                 <Link href="/models">
-                  <Button className="bg-cyan-600/20 hover:bg-cyan-600/40 border border-cyan-500/50 text-cyan-300 hover:text-cyan-200 jarvis-border transition-all">
+                  <Button className="bg-green-600/20 hover:bg-green-600/40 border border-green-500/50 text-green-300 hover:text-green-200 jarvis-border-green transition-all">
                     INSTALL FIRST MODEL
                   </Button>
                 </Link>
@@ -170,16 +170,16 @@ export default function Home() {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {models.map((model) => (
-                  <Card key={model.name} className="jarvis-border jarvis-glow bg-cyan-950/20">
+                  <Card key={model.name} className="jarvis-border-green jarvis-glow-green bg-green-950/20">
                     <CardHeader className="pb-3">
-                      <CardTitle className="text-cyan-300 text-sm uppercase">{model.name}</CardTitle>
+                      <CardTitle className="text-green-300 text-sm uppercase">{model.name}</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="flex items-center justify-between">
-                        <Badge variant="outline" className="text-cyan-400 border-cyan-500/50 uppercase">
+                        <Badge variant="outline" className="text-green-400 border-green-500/50 uppercase">
                           {formatSize(model.size)}
                         </Badge>
-                        <span className="text-xs text-cyan-400/60 uppercase">
+                        <span className="text-xs text-green-400/60 uppercase">
                           {new Date(model.modified_at).toLocaleDateString('pt-BR')}
                         </span>
                       </div>

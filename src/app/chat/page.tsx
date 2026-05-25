@@ -87,8 +87,8 @@ export default function ChatPage() {
   };
 
   return (
-    <div className="min-h-screen">
-      <div className="container mx-auto px-4 py-8 h-screen flex flex-col">
+    <div className="min-h-screen w-full">
+      <div className="w-full px-4 py-8 h-screen flex flex-col">
         <header className="mb-4 flex items-center gap-4 flex-shrink-0 jarvis-fade-in">
           <Link href="/">
             <Button variant="ghost" size="icon" className="text-cyan-300 hover:bg-cyan-950/50 jarvis-border">
@@ -105,29 +105,29 @@ export default function ChatPage() {
         </header>
 
         <div className="flex-1 flex gap-4 min-h-0">
-          <Card className="jarvis-border jarvis-glow w-64 flex-shrink-0 jarvis-fade-in" style={{ animationDelay: '0.1s' }}>
+          <Card className="jarvis-border-purple jarvis-glow-purple w-64 flex-shrink-0 jarvis-fade-in" style={{ animationDelay: '0.1s' }}>
             <CardHeader>
-              <CardTitle className="text-cyan-300 uppercase tracking-wider text-lg">MODELS</CardTitle>
-              <CardDescription className="text-cyan-400/60">Select a model</CardDescription>
+              <CardTitle className="text-purple-300 uppercase tracking-wider text-lg">MODELS</CardTitle>
+              <CardDescription className="text-purple-400/60">Select a model</CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
               {modelsLoading ? (
-                <div className="text-cyan-400/60 text-sm uppercase">LOADING...</div>
+                <div className="text-purple-400/60 text-sm uppercase">LOADING...</div>
               ) : models.length === 0 ? (
-                <div className="text-cyan-400/60 text-sm uppercase">
+                <div className="text-purple-400/60 text-sm uppercase">
                   NO MODELS INSTALLED
-                  <Link href="/models" className="text-cyan-400 hover:underline block mt-2">
+                  <Link href="/models" className="text-purple-400 hover:underline block mt-2">
                     INSTALL MODELS
                   </Link>
                 </div>
               ) : (
                 <Select value={selectedModel} onValueChange={(value) => setSelectedModel(value || '')}>
-                  <SelectTrigger className="bg-cyan-950/30 border-cyan-500/50 text-cyan-300 uppercase">
+                  <SelectTrigger className="bg-purple-950/30 border-purple-500/50 text-purple-300 uppercase">
                     <SelectValue placeholder="Select a model" />
                   </SelectTrigger>
-                  <SelectContent className="bg-cyan-950/30 border-cyan-500/50">
+                  <SelectContent className="bg-purple-950/30 border-purple-500/50">
                     {models.map((model) => (
-                      <SelectItem key={model.name} value={model.name} className="text-cyan-300 uppercase">
+                      <SelectItem key={model.name} value={model.name} className="text-purple-300 uppercase">
                         {model.name}
                       </SelectItem>
                     ))}
@@ -136,9 +136,9 @@ export default function ChatPage() {
               )}
               
               {selectedModel && (
-                <div className="mt-4 p-3 jarvis-border bg-cyan-950/20">
-                  <div className="text-cyan-300 text-sm uppercase font-medium mb-1">CURRENT MODEL</div>
-                  <Badge variant="outline" className="text-cyan-400 border-cyan-500/50 uppercase">
+                <div className="mt-4 p-3 jarvis-border-purple bg-purple-950/20">
+                  <div className="text-purple-300 text-sm uppercase font-medium mb-1">CURRENT MODEL</div>
+                  <Badge variant="outline" className="text-purple-400 border-purple-500/50 uppercase">
                     {selectedModel}
                   </Badge>
                 </div>
@@ -146,10 +146,10 @@ export default function ChatPage() {
             </CardContent>
           </Card>
 
-          <Card className="jarvis-border jarvis-glow flex-1 flex flex-col min-h-0 jarvis-fade-in" style={{ animationDelay: '0.2s' }}>
+          <Card className="jarvis-border-green jarvis-glow-green flex-1 flex flex-col min-h-0 jarvis-fade-in" style={{ animationDelay: '0.2s' }}>
             <CardHeader className="flex-shrink-0">
-              <CardTitle className="text-cyan-300 uppercase tracking-wider">CONVERSATION</CardTitle>
-              <CardDescription className="text-cyan-400/60">
+              <CardTitle className="text-green-300 uppercase tracking-wider">CONVERSATION</CardTitle>
+              <CardDescription className="text-green-400/60">
                 {messages.length} MESSAGE(S)
               </CardDescription>
             </CardHeader>
@@ -157,7 +157,7 @@ export default function ChatPage() {
             <CardContent className="flex-1 flex flex-col min-h-0 overflow-hidden">
               <div className="flex-1 overflow-y-auto space-y-4 mb-4 pr-2">
                 {messages.length === 0 ? (
-                  <div className="text-center py-8 text-cyan-400/60">
+                  <div className="text-center py-8 text-green-400/60">
                     <p className="text-lg mb-2 uppercase">INITIATE CONVERSATION</p>
                     <p className="text-sm">Select a model and type your message below</p>
                   </div>
@@ -168,10 +168,10 @@ export default function ChatPage() {
                       className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
                       <div
-                        className={`max-w-[80%] p-4 rounded-lg jarvis-border ${
+                        className={`max-w-[80%] p-4 rounded-lg jarvis-border-green ${
                           msg.role === 'user'
-                            ? 'bg-cyan-600/20 text-cyan-300'
-                            : 'bg-cyan-950/30 text-cyan-300'
+                            ? 'bg-green-600/20 text-green-300'
+                            : 'bg-green-950/30 text-green-300'
                         }`}
                       >
                         <div className="text-xs uppercase font-medium mb-2 opacity-70">
@@ -184,7 +184,7 @@ export default function ChatPage() {
                 )}
                 {loading && (
                   <div className="flex justify-start">
-                    <div className="bg-cyan-950/30 text-cyan-300 p-4 rounded-lg jarvis-border flex items-center gap-2">
+                    <div className="bg-green-950/30 text-green-300 p-4 rounded-lg jarvis-border-green flex items-center gap-2">
                       <Loader2 className="h-4 w-4 animate-spin" />
                       <span className="uppercase">PROCESSING...</span>
                     </div>
@@ -206,12 +206,12 @@ export default function ChatPage() {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={handleKeyPress}
                   disabled={!selectedModel || loading}
-                  className="bg-cyan-950/30 border-cyan-500/50 text-cyan-300 placeholder-cyan-400/40 min-h-[60px] max-h-[200px] resize-none uppercase"
+                  className="bg-green-950/30 border-green-500/50 text-green-300 placeholder-green-400/40 min-h-[60px] max-h-[200px] resize-none uppercase"
                 />
                 <Button
                   onClick={handleSend}
                   disabled={!input.trim() || !selectedModel || loading}
-                  className="bg-cyan-600/20 hover:bg-cyan-600/40 border border-cyan-500/50 text-cyan-300 hover:text-cyan-200 jarvis-border px-6 transition-all"
+                  className="bg-green-600/20 hover:bg-green-600/40 border border-green-500/50 text-green-300 hover:text-green-200 jarvis-border-green px-6 transition-all"
                 >
                   {loading ? (
                     <Loader2 className="h-5 w-5 animate-spin" />

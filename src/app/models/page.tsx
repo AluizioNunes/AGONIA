@@ -81,8 +81,8 @@ export default function ModelsPage() {
   };
 
   return (
-    <div className="min-h-screen">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen w-full">
+      <div className="w-full px-4 py-8">
         <header className="mb-12 flex items-center gap-4 jarvis-fade-in">
           <Link href="/">
             <Button variant="ghost" size="icon" className="text-cyan-300 hover:bg-cyan-950/50 jarvis-border">
@@ -102,51 +102,51 @@ export default function ModelsPage() {
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-          <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.1s' }}>
+          <Card className="jarvis-border-purple jarvis-glow-purple jarvis-fade-in" style={{ animationDelay: '0.1s' }}>
             <CardHeader>
-              <CardTitle className="text-cyan-300 uppercase tracking-wider">DOWNLOAD MODEL</CardTitle>
-              <CardDescription className="text-cyan-400/60">Enter model name or choose recommended</CardDescription>
+              <CardTitle className="text-purple-300 uppercase tracking-wider">DOWNLOAD MODEL</CardTitle>
+              <CardDescription className="text-purple-400/60">Enter model name or choose recommended</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="model-name" className="text-cyan-400 uppercase">MODEL NAME</Label>
+                <Label htmlFor="model-name" className="text-purple-400 uppercase">MODEL NAME</Label>
                 <Input
                   id="model-name"
                   placeholder="ex: deepseek-coder-v2"
                   value={modelName}
                   onChange={(e) => setModelName(e.target.value)}
-                  className="bg-cyan-950/30 border-cyan-500/50 text-cyan-300 placeholder-cyan-400/40 uppercase"
+                  className="bg-purple-950/30 border-purple-500/50 text-purple-300 placeholder-purple-400/40 uppercase"
                 />
               </div>
               <Button 
                 onClick={() => handlePull(modelName)}
                 disabled={!modelName || pulling !== null}
-                className="w-full bg-cyan-600/20 hover:bg-cyan-600/40 border border-cyan-500/50 text-cyan-300 hover:text-cyan-200 jarvis-border transition-all"
+                className="w-full bg-purple-600/20 hover:bg-purple-600/40 border border-purple-500/50 text-purple-300 hover:text-purple-200 jarvis-border-purple transition-all"
               >
                 {pulling ? 'DOWNLOADING...' : 'DOWNLOAD MODEL'}
               </Button>
             </CardContent>
           </Card>
 
-          <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.2s' }}>
+          <Card className="jarvis-border-green jarvis-glow-green jarvis-fade-in" style={{ animationDelay: '0.2s' }}>
             <CardHeader>
-              <CardTitle className="text-cyan-300 uppercase tracking-wider">RECOMMENDED MODELS</CardTitle>
-              <CardDescription className="text-cyan-400/60">Click to download automatically</CardDescription>
+              <CardTitle className="text-green-300 uppercase tracking-wider">RECOMMENDED MODELS</CardTitle>
+              <CardDescription className="text-green-400/60">Click to download automatically</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
               {RECOMMENDED_MODELS.map((model) => (
-                <div key={model.name} className="flex items-center justify-between p-4 jarvis-border bg-cyan-950/20">
+                <div key={model.name} className="flex items-center justify-between p-4 jarvis-border-green bg-green-950/20">
                   <div>
-                    <div className="text-cyan-300 uppercase font-medium">{model.name}</div>
-                    <div className="text-cyan-400/60 text-sm">{model.description}</div>
+                    <div className="text-green-300 uppercase font-medium">{model.name}</div>
+                    <div className="text-green-400/60 text-sm">{model.description}</div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Badge variant="outline" className="text-cyan-400 border-cyan-500/50 uppercase">{model.size}</Badge>
+                    <Badge variant="outline" className="text-green-400 border-green-500/50 uppercase">{model.size}</Badge>
                     <Button
                       size="sm"
                       onClick={() => handlePull(model.name)}
                       disabled={pulling !== null}
-                      className="bg-cyan-600/20 hover:bg-cyan-600/40 border border-cyan-500/50 text-cyan-300 hover:text-cyan-200 jarvis-border transition-all"
+                      className="bg-green-600/20 hover:bg-green-600/40 border border-green-500/50 text-green-300 hover:text-green-200 jarvis-border-green transition-all"
                     >
                       <Download className="h-4 w-4" />
                     </Button>
@@ -157,28 +157,28 @@ export default function ModelsPage() {
           </Card>
         </div>
 
-        <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.3s' }}>
+        <Card className="jarvis-border-orange jarvis-glow-orange jarvis-fade-in" style={{ animationDelay: '0.3s' }}>
           <CardHeader>
-            <CardTitle className="text-cyan-300 uppercase tracking-wider">INSTALLED MODELS</CardTitle>
-            <CardDescription className="text-cyan-400/60">
+            <CardTitle className="text-orange-300 uppercase tracking-wider">INSTALLED MODELS</CardTitle>
+            <CardDescription className="text-orange-400/60">
               {models.length} MODEL(S) INSTALLED
             </CardDescription>
           </CardHeader>
           <CardContent>
             {loading ? (
-              <div className="text-center py-8 text-cyan-400/60 uppercase">LOADING...</div>
+              <div className="text-center py-8 text-orange-400/60 uppercase">LOADING...</div>
             ) : models.length === 0 ? (
-              <div className="text-center py-8 text-cyan-400/60">
+              <div className="text-center py-8 text-orange-400/60">
                 <p className="uppercase mb-4">NO MODELS INSTALLED</p>
                 <p className="text-sm">Download a model above to get started</p>
               </div>
             ) : (
               <div className="space-y-3">
                 {models.map((model) => (
-                  <div key={model.name} className="flex items-center justify-between p-4 jarvis-border bg-cyan-950/20">
+                  <div key={model.name} className="flex items-center justify-between p-4 jarvis-border-orange bg-orange-950/20">
                     <div className="flex-1">
-                      <div className="text-cyan-300 uppercase font-medium">{model.name}</div>
-                      <div className="text-cyan-400/60 text-sm uppercase">
+                      <div className="text-orange-300 uppercase font-medium">{model.name}</div>
+                      <div className="text-orange-400/60 text-sm uppercase">
                         {formatSize(model.size)} • {new Date(model.modified_at).toLocaleDateString('pt-BR')}
                       </div>
                     </div>

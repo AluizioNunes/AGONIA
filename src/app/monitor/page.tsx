@@ -73,8 +73,8 @@ export default function MonitorPage() {
   };
 
   return (
-    <div className="min-h-screen">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen w-full">
+      <div className="w-full px-4 py-8">
         <header className="mb-12 flex items-center justify-between jarvis-fade-in">
           <div className="flex items-center gap-4">
             <Link href="/">
@@ -115,113 +115,113 @@ export default function MonitorPage() {
             </CardContent>
           </Card>
 
-          <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.2s' }}>
+          <Card className="jarvis-border-purple jarvis-glow-purple jarvis-fade-in" style={{ animationDelay: '0.2s' }}>
             <CardHeader className="pb-3">
-              <CardTitle className="text-cyan-400 text-sm uppercase tracking-wider flex items-center gap-2">
+              <CardTitle className="text-purple-400 text-sm uppercase tracking-wider flex items-center gap-2">
                 <Activity className="h-4 w-4" />
                 MEMORY RAM
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className={`text-4xl font-bold jarvis-text-glow ${getStatusColor(stats.memory)}`}>
+              <div className={`text-4xl font-bold jarvis-text-glow-purple ${getStatusColor(stats.memory)}`}>
                 {stats.memory.toFixed(1)}%
               </div>
-              <div className="text-xs text-cyan-400/60 mt-1 uppercase">MEMORY USAGE</div>
+              <div className="text-xs text-purple-400/60 mt-1 uppercase">MEMORY USAGE</div>
             </CardContent>
           </Card>
 
-          <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.3s' }}>
+          <Card className="jarvis-border-green jarvis-glow-green jarvis-fade-in" style={{ animationDelay: '0.3s' }}>
             <CardHeader className="pb-3">
-              <CardTitle className="text-cyan-400 text-sm uppercase tracking-wider flex items-center gap-2">
+              <CardTitle className="text-green-400 text-sm uppercase tracking-wider flex items-center gap-2">
                 <Server className="h-4 w-4" />
                 GPU
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className={`text-4xl font-bold jarvis-text-glow ${stats.gpu ? getStatusColor(stats.gpu) : 'text-cyan-400/60'}`}>
+              <div className={`text-4xl font-bold jarvis-text-glow-green ${stats.gpu ? getStatusColor(stats.gpu) : 'text-cyan-400/60'}`}>
                 {stats.gpu ? `${stats.gpu.toFixed(1)}%` : 'N/A'}
               </div>
-              <div className="text-xs text-cyan-400/60 mt-1 uppercase">GPU USAGE</div>
+              <div className="text-xs text-green-400/60 mt-1 uppercase">GPU USAGE</div>
             </CardContent>
           </Card>
 
-          <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.4s' }}>
+          <Card className="jarvis-border-orange jarvis-glow-orange jarvis-fade-in" style={{ animationDelay: '0.4s' }}>
             <CardHeader className="pb-3">
-              <CardTitle className="text-cyan-400 text-sm uppercase tracking-wider flex items-center gap-2">
+              <CardTitle className="text-orange-400 text-sm uppercase tracking-wider flex items-center gap-2">
                 <HardDrive className="h-4 w-4" />
                 DISK
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className={`text-4xl font-bold jarvis-text-glow ${getStatusColor(stats.disk * 100)}`}>
+              <div className={`text-4xl font-bold text-orange-300 ${getStatusColor(stats.disk * 100)}`}>
                 {(stats.disk * 100).toFixed(1)}%
               </div>
-              <div className="text-xs text-cyan-400/60 mt-1 uppercase">STORAGE USAGE</div>
+              <div className="text-xs text-orange-400/60 mt-1 uppercase">STORAGE USAGE</div>
             </CardContent>
           </Card>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-          <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.5s' }}>
+          <Card className="jarvis-border-purple jarvis-glow-purple jarvis-fade-in" style={{ animationDelay: '0.5s' }}>
             <CardHeader>
-              <CardTitle className="text-cyan-300 uppercase tracking-wider">SERVICE STATUS</CardTitle>
-              <CardDescription className="text-cyan-400/60">
+              <CardTitle className="text-purple-300 uppercase tracking-wider">SERVICE STATUS</CardTitle>
+              <CardDescription className="text-purple-400/60">
                 LAST UPDATE: {lastUpdate.toLocaleTimeString('pt-BR')}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="flex items-center justify-between p-4 jarvis-border bg-cyan-950/20">
+              <div className="flex items-center justify-between p-4 jarvis-border-purple bg-purple-950/20">
                 <div className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-cyan-400 rounded-full jarvis-pulse" />
-                  <span className="text-cyan-300 uppercase font-medium">OLLAMA</span>
+                  <div className="w-3 h-3 bg-purple-400 rounded-full jarvis-pulse-purple" />
+                  <span className="text-purple-300 uppercase font-medium">OLLAMA</span>
                 </div>
-                <Badge className="bg-cyan-600 jarvis-glow">ONLINE</Badge>
+                <Badge className="bg-green-600 jarvis-glow-green">ONLINE</Badge>
               </div>
 
-              <div className="flex items-center justify-between p-4 jarvis-border bg-cyan-950/20">
+              <div className="flex items-center justify-between p-4 jarvis-border-purple bg-purple-950/20">
                 <div className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-cyan-400 rounded-full jarvis-pulse" />
-                  <span className="text-cyan-300 uppercase font-medium">QDRANT</span>
+                  <div className="w-3 h-3 bg-purple-400 rounded-full jarvis-pulse-purple" />
+                  <span className="text-purple-300 uppercase font-medium">QDRANT</span>
                 </div>
-                <Badge className="bg-cyan-600 jarvis-glow">ONLINE</Badge>
+                <Badge className="bg-green-600 jarvis-glow-green">ONLINE</Badge>
               </div>
 
-              <div className="flex items-center justify-between p-4 jarvis-border bg-cyan-950/20">
+              <div className="flex items-center justify-between p-4 jarvis-border-purple bg-purple-950/20">
                 <div className="flex items-center gap-3">
-                  <div className="w-3 h-3 bg-cyan-400 rounded-full jarvis-pulse" />
-                  <span className="text-cyan-300 uppercase font-medium">FRONTEND</span>
+                  <div className="w-3 h-3 bg-purple-400 rounded-full jarvis-pulse-purple" />
+                  <span className="text-purple-300 uppercase font-medium">FRONTEND</span>
                 </div>
-                <Badge className="bg-cyan-600 jarvis-glow">ONLINE</Badge>
+                <Badge className="bg-green-600 jarvis-glow-green">ONLINE</Badge>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.6s' }}>
+          <Card className="jarvis-border-green jarvis-glow-green jarvis-fade-in" style={{ animationDelay: '0.6s' }}>
             <CardHeader>
-              <CardTitle className="text-cyan-300 uppercase tracking-wider">MODEL INFORMATION</CardTitle>
-              <CardDescription className="text-cyan-400/60">
+              <CardTitle className="text-green-300 uppercase tracking-wider">MODEL INFORMATION</CardTitle>
+              <CardDescription className="text-green-400/60">
                 {models.length} MODEL(S) LOADED
               </CardDescription>
             </CardHeader>
             <CardContent>
               {loading ? (
-                <div className="text-center py-8 text-cyan-400/60 uppercase">LOADING...</div>
+                <div className="text-center py-8 text-green-400/60 uppercase">LOADING...</div>
               ) : models.length === 0 ? (
-                <div className="text-center py-8 text-cyan-400/60">
+                <div className="text-center py-8 text-green-400/60">
                   <p className="uppercase mb-4">NO MODELS INSTALLED</p>
-                  <Link href="/models" className="text-cyan-400 hover:underline block mt-2">
+                  <Link href="/models" className="text-green-400 hover:underline block mt-2">
                     INSTALL MODELS
                   </Link>
                 </div>
               ) : (
                 <div className="space-y-3">
                   {models.map((model) => (
-                    <div key={model.name} className="flex items-center justify-between p-4 jarvis-border bg-cyan-950/20">
+                    <div key={model.name} className="flex items-center justify-between p-4 jarvis-border-green bg-green-950/20">
                       <div className="flex-1">
-                        <div className="text-cyan-300 uppercase font-medium text-sm">{model.name}</div>
-                        <div className="text-cyan-400/60 text-xs uppercase">{formatSize(model.size)}</div>
+                        <div className="text-green-300 uppercase font-medium text-sm">{model.name}</div>
+                        <div className="text-green-400/60 text-xs uppercase">{formatSize(model.size)}</div>
                       </div>
-                      <Badge variant="outline" className="text-cyan-400 border-cyan-500/50 uppercase">
+                      <Badge variant="outline" className="text-green-400 border-green-500/50 uppercase">
                         LOADED
                       </Badge>
                     </div>
@@ -232,26 +232,26 @@ export default function MonitorPage() {
           </Card>
         </div>
 
-        <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.7s' }}>
+        <Card className="jarvis-border-orange jarvis-glow-orange jarvis-fade-in" style={{ animationDelay: '0.7s' }}>
           <CardHeader>
-            <CardTitle className="text-cyan-300 uppercase tracking-wider">SYSTEM SUMMARY</CardTitle>
-            <CardDescription className="text-cyan-400/60">AGONIA STACK OVERVIEW</CardDescription>
+            <CardTitle className="text-orange-300 uppercase tracking-wider">SYSTEM SUMMARY</CardTitle>
+            <CardDescription className="text-orange-400/60">AGONIA STACK OVERVIEW</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-4 jarvis-border bg-cyan-950/20">
-                <div className="text-cyan-400/60 text-sm mb-1 uppercase">TOTAL MODELS</div>
-                <div className="text-3xl font-bold jarvis-text-glow text-cyan-300">{models.length}</div>
+              <div className="p-4 jarvis-border-orange bg-orange-950/20">
+                <div className="text-orange-400/60 text-sm mb-1 uppercase">TOTAL MODELS</div>
+                <div className="text-3xl font-bold text-orange-300">{models.length}</div>
               </div>
-              <div className="p-4 jarvis-border bg-cyan-950/20">
-                <div className="text-cyan-400/60 text-sm mb-1 uppercase">TOTAL STORAGE USED</div>
-                <div className="text-3xl font-bold jarvis-text-glow text-cyan-300">
+              <div className="p-4 jarvis-border-orange bg-orange-950/20">
+                <div className="text-orange-400/60 text-sm mb-1 uppercase">TOTAL STORAGE USED</div>
+                <div className="text-3xl font-bold text-orange-300">
                   {formatSize(models.reduce((acc, m) => acc + m.size, 0))}
                 </div>
               </div>
-              <div className="p-4 jarvis-border bg-cyan-950/20">
-                <div className="text-cyan-400/60 text-sm mb-1 uppercase">ACTIVE SERVICES</div>
-                <div className="text-3xl font-bold jarvis-text-glow text-cyan-300">3/3</div>
+              <div className="p-4 jarvis-border-orange bg-orange-950/20">
+                <div className="text-orange-400/60 text-sm mb-1 uppercase">ACTIVE SERVICES</div>
+                <div className="text-3xl font-bold text-orange-300">3/3</div>
               </div>
             </div>
           </CardContent>
