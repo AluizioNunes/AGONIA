@@ -27,7 +27,7 @@ services:
   # Frontend Customizado - Next.js
   frontend:
     build:
-      context: ./frontend
+      context: .
       dockerfile: Dockerfile
     container_name: agonia-frontend
     restart: unless-stopped
