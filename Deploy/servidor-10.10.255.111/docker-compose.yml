@@ -1,0 +1,124 @@
+version: '3.8'
+
+# ============================================================
+# AgonIA — Stack Completa
+# Servidor: 10.10.255.111 (Ubuntu)
+#
+# Serviços:
+#   - Ollama      : Motor de LLM/Embeddings   → porta 11434
+#   - Open WebUI  : Interface de gerenciamento → porta 3000
+#   - Qdrant      : Banco de vetores           → porta 6333
+#
+# Iniciar:  docker compose up -d
+# Parar:    docker compose down
+# Logs:     docker compose logs -f
+# ============================================================
+
+services:
+
+  # ----------------------------------------------------------
+  # OLLAMA — Servidor de Modelos
+  # ----------------------------------------------------------
+  ollama:
+    image: ollama/ollama:latest
+    container_name: agonia-ollama
+    restart: unless-stopped
+    ports:
+      - "${OLLAMA_PORT:-11434}:11434"
+    volumes:
+      - ${OLLAMA_MODELS:-/data/agonia/models}:/root/.ollama
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+      - OLLAMA_KEEP_ALIVE=${OLLAMA_KEEP_ALIVE:-10m}
+      - OLLAMA_MAX_LOADED_MODELS=${OLLAMA_MAX_LOADED_MODELS:-2}
+    # ----------------------------------------------------------
+    # OPÇÃO A: Com GPU NVIDIA (descomente se tiver GPU)
+    # ----------------------------------------------------------
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+    # ----------------------------------------------------------
+    # OPÇÃO B: Apenas CPU (padrão — já ativo)
+    # ----------------------------------------------------------
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    networks:
+      - agonia-net
+
+  # ----------------------------------------------------------
+  # OPEN WEBUI — Interface Gráfica de Gerenciamento
+  # ----------------------------------------------------------
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: agonia-webui
+    restart: unless-stopped
+    ports:
+      - "${WEBUI_PORT:-3000}:8080"
+    volumes:
+      - webui_data:/app/backend/data
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - WEBUI_SECRET_KEY=${WEBUI_SECRET_KEY:-agonia-secret-key}
+      - WEBUI_AUTH=${WEBUI_AUTH:-true}
+      - ENABLE_SIGNUP=${ENABLE_SIGNUP:-true}
+      - WEBUI_NAME=${WEBUI_NAME:-AgonIA}
+      - DEFAULT_MODELS=${DEFAULT_MODELS:-qwen2.5-coder:7b}
+    depends_on:
+      ollama:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    networks:
+      - agonia-net
+
+  # ----------------------------------------------------------
+  # QDRANT — Banco de Vetores para RAG/Embeddings
+  # ----------------------------------------------------------
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: agonia-qdrant
+    restart: unless-stopped
+    ports:
+      - "${QDRANT_PORT:-6333}:6333"
+      - "${QDRANT_GRPC_PORT:-6334}:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    environment:
+      - QDRANT__SERVICE__API_KEY=${QDRANT_API_KEY:-}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6333/readyz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - agonia-net
+
+# ----------------------------------------------------------
+# VOLUMES
+# ----------------------------------------------------------
+volumes:
+  webui_data:
+    driver: local
+  qdrant_data:
+    driver: local
+
+# ----------------------------------------------------------
+# REDE INTERNA
+# ----------------------------------------------------------
+networks:
+  agonia-net:
+    driver: bridge
+    name: agonia-network
