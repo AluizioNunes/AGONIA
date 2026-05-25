@@ -73,7 +73,7 @@ services:
     container_name: agonia-backend-fastapi
     restart: unless-stopped
     ports:
-      - "8000:8000"
+      - "8001:8000"
     environment:
       - OLLAMA_URL=http://ollama:11434
     volumes:
