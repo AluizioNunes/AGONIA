@@ -118,6 +118,11 @@ export default function Home() {
                 >
                   {loading ? 'LOADING...' : 'REFRESH STATUS'}
                 </Button>
+                <a href="http://localhost:8080" target="_blank" rel="noopener noreferrer">
+                  <Button className="w-full bg-orange-600/20 hover:bg-orange-600/40 border border-orange-500/50 text-orange-300 hover:text-orange-200 jarvis-border-orange transition-all">
+                    OPEN WEBUI
+                  </Button>
+                </a>
               </div>
             </CardContent>
           </Card>

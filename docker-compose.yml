@@ -40,6 +40,23 @@ services:
     networks:
       - agonia-network
 
+  # Open WebUI - Segundo Frontend
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: agonia-open-webui
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - openwebui_data:/app/backend/data
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - WEBUI_NAME=AgonIA
+    depends_on:
+      - ollama
+    networks:
+      - agonia-network
+
   # Qdrant - Banco de Vetores para RAG
   qdrant:
     image: qdrant/qdrant:latest
@@ -76,6 +93,8 @@ volumes:
   ollama_data:
     driver: local
   qdrant_data:
+    driver: local
+  openwebui_data:
     driver: local
 
 networks:
