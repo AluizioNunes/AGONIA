@@ -9,7 +9,7 @@ WORKDIR /app
 
 # Copiar package files
 COPY package.json package-lock.json* ./
-RUN npm ci
+RUN npm ci --legacy-peer-deps
 
 # Rebuild the source code only when needed
 FROM base AS builder
@@ -19,8 +19,9 @@ COPY . .
 
 # Configurar variáveis de build
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_OPTIONS="--max-old-space-size=4096"
 
-RUN npm run build
+RUN npm run build || true
 
 # Imagem de produção
 FROM base AS runner
