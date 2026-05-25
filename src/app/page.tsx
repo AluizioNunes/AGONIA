@@ -49,7 +49,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.1s' }}>
             <CardHeader className="pb-3">
-              <CardTitle className="text-cyan-400 text-sm font-mono tracking-wider">MODELS INSTALLED</CardTitle>
+              <CardTitle className="text-cyan-400 text-sm tracking-widest uppercase">MODELS INSTALLED</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-4xl font-bold jarvis-text-glow text-cyan-300">{models.length}</div>
@@ -58,7 +58,7 @@ export default function Home() {
 
           <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.2s' }}>
             <CardHeader className="pb-3">
-              <CardTitle className="text-cyan-400 text-sm font-mono tracking-wider">SERVER STATUS</CardTitle>
+              <CardTitle className="text-cyan-400 text-sm tracking-widest uppercase">SERVER STATUS</CardTitle>
             </CardHeader>
             <CardContent>
               <Badge variant={error ? 'destructive' : 'default'} className={error ? 'bg-red-600 jarvis-glow' : 'bg-cyan-600 jarvis-glow'}>
@@ -69,7 +69,7 @@ export default function Home() {
 
           <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.3s' }}>
             <CardHeader className="pb-3">
-              <CardTitle className="text-cyan-400 text-sm font-mono tracking-wider">OLLAMA PORT</CardTitle>
+              <CardTitle className="text-cyan-400 text-sm tracking-widest uppercase">OLLAMA PORT</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-4xl font-bold jarvis-text-glow text-cyan-300">11434</div>
@@ -78,7 +78,7 @@ export default function Home() {
 
           <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.4s' }}>
             <CardHeader className="pb-3">
-              <CardTitle className="text-cyan-400 text-sm font-mono tracking-wider">STORAGE</CardTitle>
+              <CardTitle className="text-cyan-400 text-sm tracking-widest uppercase">STORAGE</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-4xl font-bold jarvis-text-glow text-cyan-300">
@@ -91,7 +91,7 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
           <Card className="jarvis-border jarvis-glow jarvis-fade-in lg:col-span-2" style={{ animationDelay: '0.5s' }}>
             <CardHeader>
-              <CardTitle className="text-cyan-300 font-mono tracking-wider">QUICK ACTIONS</CardTitle>
+              <CardTitle className="text-cyan-300 tracking-widest uppercase">QUICK ACTIONS</CardTitle>
               <CardDescription className="text-cyan-400/60">Manage your AgonIA stack</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -124,20 +124,20 @@ export default function Home() {
 
           <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.6s' }}>
             <CardHeader>
-              <CardTitle className="text-cyan-300 font-mono tracking-wider">SERVICES</CardTitle>
+              <CardTitle className="text-cyan-300 tracking-widest uppercase">SERVICES</CardTitle>
               <CardDescription className="text-cyan-400/60">Container status</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between p-3 jarvis-border">
-                <span className="text-cyan-300 font-mono">OLLAMA</span>
+                <span className="text-cyan-300 uppercase">OLLAMA</span>
                 <Badge className="bg-cyan-600 jarvis-glow">RUNNING</Badge>
               </div>
               <div className="flex items-center justify-between p-3 jarvis-border">
-                <span className="text-cyan-300 font-mono">QDRANT</span>
+                <span className="text-cyan-300 uppercase">QDRANT</span>
                 <Badge className="bg-cyan-600 jarvis-glow">RUNNING</Badge>
               </div>
               <div className="flex items-center justify-between p-3 jarvis-border">
-                <span className="text-cyan-300 font-mono">FRONTEND</span>
+                <span className="text-cyan-300 uppercase">FRONTEND</span>
                 <Badge className="bg-cyan-600 jarvis-glow">RUNNING</Badge>
               </div>
             </CardContent>
@@ -146,21 +146,21 @@ export default function Home() {
 
         <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.7s' }}>
           <CardHeader>
-            <CardTitle className="text-cyan-300 font-mono tracking-wider">INSTALLED MODELS</CardTitle>
+            <CardTitle className="text-cyan-300 tracking-widest uppercase">INSTALLED MODELS</CardTitle>
             <CardDescription className="text-cyan-400/60">Available LLM models</CardDescription>
           </CardHeader>
           <CardContent>
             {error && (
               <div className="mb-4 p-4 bg-red-900/20 border border-red-500/50 rounded-lg jarvis-border">
-                <p className="text-red-400 font-mono">{error}</p>
+                <p className="text-red-400 uppercase">{error}</p>
               </div>
             )}
 
             {loading ? (
-              <div className="text-center py-8 text-cyan-400/60 font-mono">LOADING MODELS...</div>
+              <div className="text-center py-8 text-cyan-400/60 uppercase">LOADING MODELS...</div>
             ) : models.length === 0 ? (
               <div className="text-center py-8 text-cyan-400/60">
-                <p className="font-mono mb-4">NO MODELS INSTALLED</p>
+                <p className="mb-4 uppercase">NO MODELS INSTALLED</p>
                 <Link href="/models">
                   <Button className="bg-cyan-600/20 hover:bg-cyan-600/40 border border-cyan-500/50 text-cyan-300 hover:text-cyan-200 jarvis-border transition-all">
                     INSTALL FIRST MODEL
@@ -172,14 +172,14 @@ export default function Home() {
                 {models.map((model) => (
                   <Card key={model.name} className="jarvis-border jarvis-glow bg-cyan-950/20">
                     <CardHeader className="pb-3">
-                      <CardTitle className="text-cyan-300 font-mono text-sm">{model.name}</CardTitle>
+                      <CardTitle className="text-cyan-300 text-sm uppercase">{model.name}</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="flex items-center justify-between">
-                        <Badge variant="outline" className="text-cyan-400 border-cyan-500/50 font-mono">
+                        <Badge variant="outline" className="text-cyan-400 border-cyan-500/50 uppercase">
                           {formatSize(model.size)}
                         </Badge>
-                        <span className="text-xs text-cyan-400/60 font-mono">
+                        <span className="text-xs text-cyan-400/60 uppercase">
                           {new Date(model.modified_at).toLocaleDateString('pt-BR')}
                         </span>
                       </div>
