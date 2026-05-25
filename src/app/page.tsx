@@ -36,147 +36,150 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="min-h-screen">
       <div className="container mx-auto px-4 py-8">
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2">AgonIA Dashboard</h1>
-          <p className="text-slate-400">Gerenciamento de Modelos LLM Locais</p>
+        <header className="mb-12 jarvis-fade-in">
+          <div className="flex items-center gap-4 mb-4">
+            <div className="w-3 h-3 bg-cyan-400 rounded-full jarvis-pulse"></div>
+            <h1 className="text-5xl font-bold jarvis-text-glow">AGONIA</h1>
+          </div>
+          <p className="text-cyan-300/70 text-lg tracking-wider">J.A.R.V.I.S. INTERFACE - AI MANAGEMENT SYSTEM</p>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          <Card className="bg-slate-800 border-slate-700">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-slate-400">Modelos Instalados</CardTitle>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.1s' }}>
+            <CardHeader className="pb-3">
+              <CardTitle className="text-cyan-400 text-sm font-mono tracking-wider">MODELS INSTALLED</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-white">{models.length}</div>
+              <div className="text-4xl font-bold jarvis-text-glow text-cyan-300">{models.length}</div>
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-800 border-slate-700">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-slate-400">Status do Servidor</CardTitle>
+          <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.2s' }}>
+            <CardHeader className="pb-3">
+              <CardTitle className="text-cyan-400 text-sm font-mono tracking-wider">SERVER STATUS</CardTitle>
             </CardHeader>
             <CardContent>
-              <Badge variant={error ? 'destructive' : 'default'} className={error ? '' : 'bg-green-600'}>
-                {error ? 'Offline' : 'Online'}
+              <Badge variant={error ? 'destructive' : 'default'} className={error ? 'bg-red-600 jarvis-glow' : 'bg-cyan-600 jarvis-glow'}>
+                {error ? 'OFFLINE' : 'ONLINE'}
               </Badge>
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-800 border-slate-700">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-slate-400">Porta Ollama</CardTitle>
+          <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.3s' }}>
+            <CardHeader className="pb-3">
+              <CardTitle className="text-cyan-400 text-sm font-mono tracking-wider">OLLAMA PORT</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-white">11434</div>
+              <div className="text-4xl font-bold jarvis-text-glow text-cyan-300">11434</div>
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-800 border-slate-700">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-slate-400">Total Armazenado</CardTitle>
+          <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.4s' }}>
+            <CardHeader className="pb-3">
+              <CardTitle className="text-cyan-400 text-sm font-mono tracking-wider">STORAGE</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-white">
+              <div className="text-4xl font-bold jarvis-text-glow text-cyan-300">
                 {formatSize(models.reduce((acc, m) => acc + m.size, 0))}
               </div>
             </CardContent>
           </Card>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-          <Card className="bg-slate-800 border-slate-700 lg:col-span-2">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+          <Card className="jarvis-border jarvis-glow jarvis-fade-in lg:col-span-2" style={{ animationDelay: '0.5s' }}>
             <CardHeader>
-              <CardTitle className="text-white">Ações Rápidas</CardTitle>
-              <CardDescription className="text-slate-400">Gerencie sua stack AgonIA</CardDescription>
+              <CardTitle className="text-cyan-300 font-mono tracking-wider">QUICK ACTIONS</CardTitle>
+              <CardDescription className="text-cyan-400/60">Manage your AgonIA stack</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Link href="/models">
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700">
-                    Gerenciar Modelos
+                  <Button className="w-full bg-cyan-600/20 hover:bg-cyan-600/40 border border-cyan-500/50 text-cyan-300 hover:text-cyan-200 jarvis-border transition-all">
+                    MANAGE MODELS
                   </Button>
                 </Link>
                 <Link href="/chat">
-                  <Button className="w-full bg-purple-600 hover:bg-purple-700">
-                    Chat com IA
+                  <Button className="w-full bg-cyan-600/20 hover:bg-cyan-600/40 border border-cyan-500/50 text-cyan-300 hover:text-cyan-200 jarvis-border transition-all">
+                    AI CHAT
                   </Button>
                 </Link>
                 <Link href="/monitor">
-                  <Button className="w-full bg-green-600 hover:bg-green-700">
-                    Monitoramento
+                  <Button className="w-full bg-cyan-600/20 hover:bg-cyan-600/40 border border-cyan-500/50 text-cyan-300 hover:text-cyan-200 jarvis-border transition-all">
+                    MONITORING
                   </Button>
                 </Link>
                 <Button 
                   onClick={loadModels} 
                   disabled={loading}
-                  className="w-full bg-slate-600 hover:bg-slate-700"
+                  className="w-full bg-cyan-600/20 hover:bg-cyan-600/40 border border-cyan-500/50 text-cyan-300 hover:text-cyan-200 jarvis-border transition-all"
                 >
-                  {loading ? 'Carregando...' : 'Atualizar Status'}
+                  {loading ? 'LOADING...' : 'REFRESH STATUS'}
                 </Button>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-800 border-slate-700">
+          <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.6s' }}>
             <CardHeader>
-              <CardTitle className="text-white">Serviços</CardTitle>
-              <CardDescription className="text-slate-400">Status dos containers</CardDescription>
+              <CardTitle className="text-cyan-300 font-mono tracking-wider">SERVICES</CardTitle>
+              <CardDescription className="text-cyan-400/60">Container status</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-slate-300">Ollama</span>
-                <Badge className="bg-green-600">Running</Badge>
+            <CardContent className="space-y-4">
+              <div className="flex items-center justify-between p-3 jarvis-border">
+                <span className="text-cyan-300 font-mono">OLLAMA</span>
+                <Badge className="bg-cyan-600 jarvis-glow">RUNNING</Badge>
               </div>
-              <div className="flex items-center justify-between">
-                <span className="text-slate-300">Qdrant</span>
-                <Badge className="bg-green-600">Running</Badge>
+              <div className="flex items-center justify-between p-3 jarvis-border">
+                <span className="text-cyan-300 font-mono">QDRANT</span>
+                <Badge className="bg-cyan-600 jarvis-glow">RUNNING</Badge>
               </div>
-              <div className="flex items-center justify-between">
-                <span className="text-slate-300">Frontend</span>
-                <Badge className="bg-green-600">Running</Badge>
+              <div className="flex items-center justify-between p-3 jarvis-border">
+                <span className="text-cyan-300 font-mono">FRONTEND</span>
+                <Badge className="bg-cyan-600 jarvis-glow">RUNNING</Badge>
               </div>
             </CardContent>
           </Card>
         </div>
 
-        <Card className="bg-slate-800 border-slate-700">
+        <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.7s' }}>
           <CardHeader>
-            <CardTitle className="text-white">Modelos Instalados</CardTitle>
-            <CardDescription className="text-slate-400">Lista de modelos LLM disponíveis</CardDescription>
+            <CardTitle className="text-cyan-300 font-mono tracking-wider">INSTALLED MODELS</CardTitle>
+            <CardDescription className="text-cyan-400/60">Available LLM models</CardDescription>
           </CardHeader>
           <CardContent>
             {error && (
-              <div className="mb-4 p-4 bg-red-900/20 border border-red-800 rounded-lg">
-                <p className="text-red-400">{error}</p>
+              <div className="mb-4 p-4 bg-red-900/20 border border-red-500/50 rounded-lg jarvis-border">
+                <p className="text-red-400 font-mono">{error}</p>
               </div>
             )}
 
             {loading ? (
-              <div className="text-center py-8 text-slate-400">Carregando modelos...</div>
+              <div className="text-center py-8 text-cyan-400/60 font-mono">LOADING MODELS...</div>
             ) : models.length === 0 ? (
-              <div className="text-center py-8 text-slate-400">
-                <p>Nenhum modelo instalado.</p>
+              <div className="text-center py-8 text-cyan-400/60">
+                <p className="font-mono mb-4">NO MODELS INSTALLED</p>
                 <Link href="/models">
-                  <Button className="mt-4 bg-blue-600 hover:bg-blue-700">
-                    Instalar Primeiro Modelo
+                  <Button className="bg-cyan-600/20 hover:bg-cyan-600/40 border border-cyan-500/50 text-cyan-300 hover:text-cyan-200 jarvis-border transition-all">
+                    INSTALL FIRST MODEL
                   </Button>
                 </Link>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {models.map((model) => (
-                  <Card key={model.name} className="bg-slate-700 border-slate-600">
-                    <CardHeader className="pb-2">
-                      <CardTitle className="text-sm text-white">{model.name}</CardTitle>
+                  <Card key={model.name} className="jarvis-border jarvis-glow bg-cyan-950/20">
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-cyan-300 font-mono text-sm">{model.name}</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="flex items-center justify-between">
-                        <Badge variant="outline" className="text-slate-300 border-slate-500">
+                        <Badge variant="outline" className="text-cyan-400 border-cyan-500/50 font-mono">
                           {formatSize(model.size)}
                         </Badge>
-                        <span className="text-xs text-slate-400">
+                        <span className="text-xs text-cyan-400/60 font-mono">
                           {new Date(model.modified_at).toLocaleDateString('pt-BR')}
                         </span>
                       </div>

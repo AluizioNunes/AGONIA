@@ -87,47 +87,47 @@ export default function ChatPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="min-h-screen">
       <div className="container mx-auto px-4 py-8 h-screen flex flex-col">
-        <header className="mb-4 flex items-center gap-4 flex-shrink-0">
+        <header className="mb-4 flex items-center gap-4 flex-shrink-0 jarvis-fade-in">
           <Link href="/">
-            <Button variant="ghost" size="icon" className="text-white hover:bg-slate-700">
+            <Button variant="ghost" size="icon" className="text-cyan-300 hover:bg-cyan-950/50 jarvis-border">
               <ArrowLeft className="h-5 w-5" />
             </Button>
           </Link>
           <div className="flex-1">
-            <h1 className="text-4xl font-bold text-white mb-2">Chat com IA</h1>
-            <p className="text-slate-400">Converse com os modelos LLM locais</p>
+            <h1 className="text-4xl font-bold jarvis-text-glow text-cyan-300 mb-2">AI CHAT</h1>
+            <p className="text-cyan-400/60 tracking-wider">COMMUNICATE WITH LOCAL LLM MODELS</p>
           </div>
-          <Button onClick={clearChat} variant="outline" className="border-slate-600 text-white hover:bg-slate-700">
-            Limpar Chat
+          <Button onClick={clearChat} variant="outline" className="border-cyan-500/50 text-cyan-300 hover:bg-cyan-950/50 jarvis-border">
+            CLEAR CHAT
           </Button>
         </header>
 
         <div className="flex-1 flex gap-4 min-h-0">
-          <Card className="bg-slate-800 border-slate-700 w-64 flex-shrink-0">
+          <Card className="jarvis-border jarvis-glow w-64 flex-shrink-0 jarvis-fade-in" style={{ animationDelay: '0.1s' }}>
             <CardHeader>
-              <CardTitle className="text-white text-lg">Modelos</CardTitle>
-              <CardDescription className="text-slate-400">Selecione um modelo</CardDescription>
+              <CardTitle className="text-cyan-300 font-mono tracking-wider text-lg">MODELS</CardTitle>
+              <CardDescription className="text-cyan-400/60">Select a model</CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
               {modelsLoading ? (
-                <div className="text-slate-400 text-sm">Carregando...</div>
+                <div className="text-cyan-400/60 text-sm font-mono">LOADING...</div>
               ) : models.length === 0 ? (
-                <div className="text-slate-400 text-sm">
-                  Nenhum modelo instalado.
-                  <Link href="/models" className="text-blue-400 hover:underline block mt-2">
-                    Instalar modelos
+                <div className="text-cyan-400/60 text-sm font-mono">
+                  NO MODELS INSTALLED
+                  <Link href="/models" className="text-cyan-400 hover:underline block mt-2">
+                    INSTALL MODELS
                   </Link>
                 </div>
               ) : (
                 <Select value={selectedModel} onValueChange={(value) => setSelectedModel(value || '')}>
-                  <SelectTrigger className="bg-slate-700 border-slate-600 text-white">
-                    <SelectValue placeholder="Selecione um modelo" />
+                  <SelectTrigger className="bg-cyan-950/30 border-cyan-500/50 text-cyan-300 font-mono">
+                    <SelectValue placeholder="Select a model" />
                   </SelectTrigger>
-                  <SelectContent className="bg-slate-700 border-slate-600">
+                  <SelectContent className="bg-cyan-950/30 border-cyan-500/50">
                     {models.map((model) => (
-                      <SelectItem key={model.name} value={model.name} className="text-white">
+                      <SelectItem key={model.name} value={model.name} className="text-cyan-300 font-mono">
                         {model.name}
                       </SelectItem>
                     ))}
@@ -136,9 +136,9 @@ export default function ChatPage() {
               )}
               
               {selectedModel && (
-                <div className="mt-4 p-3 bg-slate-700 rounded-lg">
-                  <div className="text-white text-sm font-medium mb-1">Modelo Atual</div>
-                  <Badge variant="outline" className="text-slate-300 border-slate-500">
+                <div className="mt-4 p-3 jarvis-border bg-cyan-950/20">
+                  <div className="text-cyan-300 text-sm font-mono font-medium mb-1">CURRENT MODEL</div>
+                  <Badge variant="outline" className="text-cyan-400 border-cyan-500/50 font-mono">
                     {selectedModel}
                   </Badge>
                 </div>
@@ -146,20 +146,20 @@ export default function ChatPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-800 border-slate-700 flex-1 flex flex-col min-h-0">
+          <Card className="jarvis-border jarvis-glow flex-1 flex flex-col min-h-0 jarvis-fade-in" style={{ animationDelay: '0.2s' }}>
             <CardHeader className="flex-shrink-0">
-              <CardTitle className="text-white">Conversa</CardTitle>
-              <CardDescription className="text-slate-400">
-                {messages.length} mensagem(s)
+              <CardTitle className="text-cyan-300 font-mono tracking-wider">CONVERSATION</CardTitle>
+              <CardDescription className="text-cyan-400/60">
+                {messages.length} MESSAGE(S)
               </CardDescription>
             </CardHeader>
             
             <CardContent className="flex-1 flex flex-col min-h-0 overflow-hidden">
               <div className="flex-1 overflow-y-auto space-y-4 mb-4 pr-2">
                 {messages.length === 0 ? (
-                  <div className="text-center py-8 text-slate-400">
-                    <p className="text-lg mb-2">Inicie uma conversa</p>
-                    <p className="text-sm">Selecione um modelo e digite sua mensagem abaixo</p>
+                  <div className="text-center py-8 text-cyan-400/60">
+                    <p className="text-lg mb-2 font-mono">INITIATE CONVERSATION</p>
+                    <p className="text-sm">Select a model and type your message below</p>
                   </div>
                 ) : (
                   messages.map((msg, index) => (
@@ -168,14 +168,14 @@ export default function ChatPage() {
                       className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
                       <div
-                        className={`max-w-[80%] p-4 rounded-lg ${
+                        className={`max-w-[80%] p-4 rounded-lg jarvis-border ${
                           msg.role === 'user'
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-slate-700 text-white'
+                            ? 'bg-cyan-600/20 text-cyan-300'
+                            : 'bg-cyan-950/30 text-cyan-300'
                         }`}
                       >
-                        <div className="text-xs font-medium mb-2 opacity-70">
-                          {msg.role === 'user' ? 'Você' : selectedModel}
+                        <div className="text-xs font-mono font-medium mb-2 opacity-70">
+                          {msg.role === 'user' ? 'YOU' : selectedModel}
                         </div>
                         <div className="whitespace-pre-wrap">{msg.content}</div>
                       </div>
@@ -184,9 +184,9 @@ export default function ChatPage() {
                 )}
                 {loading && (
                   <div className="flex justify-start">
-                    <div className="bg-slate-700 text-white p-4 rounded-lg flex items-center gap-2">
+                    <div className="bg-cyan-950/30 text-cyan-300 p-4 rounded-lg jarvis-border flex items-center gap-2">
                       <Loader2 className="h-4 w-4 animate-spin" />
-                      <span>Pensando...</span>
+                      <span className="font-mono">PROCESSING...</span>
                     </div>
                   </div>
                 )}
@@ -194,24 +194,24 @@ export default function ChatPage() {
               </div>
 
               {error && (
-                <Alert className="mb-4 bg-red-900/20 border-red-800 flex-shrink-0">
-                  <AlertDescription className="text-red-400">{error}</AlertDescription>
+                <Alert className="mb-4 bg-red-900/20 border-red-500/50 jarvis-border flex-shrink-0">
+                  <AlertDescription className="text-red-400 font-mono">{error}</AlertDescription>
                 </Alert>
               )}
 
               <div className="flex gap-2 flex-shrink-0">
                 <Textarea
-                  placeholder="Digite sua mensagem..."
+                  placeholder="Type your message..."
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={handleKeyPress}
                   disabled={!selectedModel || loading}
-                  className="bg-slate-700 border-slate-600 text-white min-h-[60px] max-h-[200px] resize-none"
+                  className="bg-cyan-950/30 border-cyan-500/50 text-cyan-300 placeholder-cyan-400/40 min-h-[60px] max-h-[200px] resize-none font-mono"
                 />
                 <Button
                   onClick={handleSend}
                   disabled={!input.trim() || !selectedModel || loading}
-                  className="bg-blue-600 hover:bg-blue-700 px-6"
+                  className="bg-cyan-600/20 hover:bg-cyan-600/40 border border-cyan-500/50 text-cyan-300 hover:text-cyan-200 jarvis-border px-6 transition-all"
                 >
                   {loading ? (
                     <Loader2 className="h-5 w-5 animate-spin" />

@@ -81,72 +81,72 @@ export default function ModelsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="min-h-screen">
       <div className="container mx-auto px-4 py-8">
-        <header className="mb-8 flex items-center gap-4">
+        <header className="mb-12 flex items-center gap-4 jarvis-fade-in">
           <Link href="/">
-            <Button variant="ghost" size="icon" className="text-white hover:bg-slate-700">
+            <Button variant="ghost" size="icon" className="text-cyan-300 hover:bg-cyan-950/50 jarvis-border">
               <ArrowLeft className="h-5 w-5" />
             </Button>
           </Link>
           <div>
-            <h1 className="text-4xl font-bold text-white mb-2">Gerenciar Modelos</h1>
-            <p className="text-slate-400">Instale, remova e gerencie modelos LLM</p>
+            <h1 className="text-4xl font-bold jarvis-text-glow text-cyan-300 mb-2">MODEL MANAGEMENT</h1>
+            <p className="text-cyan-400/60 tracking-wider">INSTALL, REMOVE AND MANAGE LLM MODELS</p>
           </div>
         </header>
 
         {error && (
-          <Alert className="mb-6 bg-red-900/20 border-red-800">
-            <AlertDescription className="text-red-400">{error}</AlertDescription>
+          <Alert className="mb-6 bg-red-900/20 border-red-500/50 jarvis-border">
+            <AlertDescription className="text-red-400 font-mono">{error}</AlertDescription>
           </Alert>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <Card className="bg-slate-800 border-slate-700">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+          <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.1s' }}>
             <CardHeader>
-              <CardTitle className="text-white">Baixar Modelo</CardTitle>
-              <CardDescription className="text-slate-400">Digite o nome do modelo ou escolha um recomendado</CardDescription>
+              <CardTitle className="text-cyan-300 font-mono tracking-wider">DOWNLOAD MODEL</CardTitle>
+              <CardDescription className="text-cyan-400/60">Enter model name or choose recommended</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="model-name" className="text-slate-300">Nome do Modelo</Label>
+                <Label htmlFor="model-name" className="text-cyan-400 font-mono">MODEL NAME</Label>
                 <Input
                   id="model-name"
                   placeholder="ex: deepseek-coder-v2"
                   value={modelName}
                   onChange={(e) => setModelName(e.target.value)}
-                  className="bg-slate-700 border-slate-600 text-white"
+                  className="bg-cyan-950/30 border-cyan-500/50 text-cyan-300 placeholder-cyan-400/40 font-mono"
                 />
               </div>
               <Button 
                 onClick={() => handlePull(modelName)}
                 disabled={!modelName || pulling !== null}
-                className="w-full bg-blue-600 hover:bg-blue-700"
+                className="w-full bg-cyan-600/20 hover:bg-cyan-600/40 border border-cyan-500/50 text-cyan-300 hover:text-cyan-200 jarvis-border transition-all"
               >
-                {pulling ? 'Baixando...' : 'Baixar Modelo'}
+                {pulling ? 'DOWNLOADING...' : 'DOWNLOAD MODEL'}
               </Button>
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-800 border-slate-700">
+          <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.2s' }}>
             <CardHeader>
-              <CardTitle className="text-white">Modelos Recomendados</CardTitle>
-              <CardDescription className="text-slate-400">Clique para baixar automaticamente</CardDescription>
+              <CardTitle className="text-cyan-300 font-mono tracking-wider">RECOMMENDED MODELS</CardTitle>
+              <CardDescription className="text-cyan-400/60">Click to download automatically</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-2">
+            <CardContent className="space-y-3">
               {RECOMMENDED_MODELS.map((model) => (
-                <div key={model.name} className="flex items-center justify-between p-3 bg-slate-700 rounded-lg">
+                <div key={model.name} className="flex items-center justify-between p-4 jarvis-border bg-cyan-950/20">
                   <div>
-                    <div className="text-white font-medium">{model.name}</div>
-                    <div className="text-slate-400 text-sm">{model.description}</div>
+                    <div className="text-cyan-300 font-mono font-medium">{model.name}</div>
+                    <div className="text-cyan-400/60 text-sm">{model.description}</div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Badge variant="outline" className="text-slate-300 border-slate-500">{model.size}</Badge>
+                    <Badge variant="outline" className="text-cyan-400 border-cyan-500/50 font-mono">{model.size}</Badge>
                     <Button
                       size="sm"
                       onClick={() => handlePull(model.name)}
                       disabled={pulling !== null}
-                      className="bg-green-600 hover:bg-green-700"
+                      className="bg-cyan-600/20 hover:bg-cyan-600/40 border border-cyan-500/50 text-cyan-300 hover:text-cyan-200 jarvis-border transition-all"
                     >
                       <Download className="h-4 w-4" />
                     </Button>
@@ -157,27 +157,28 @@ export default function ModelsPage() {
           </Card>
         </div>
 
-        <Card className="bg-slate-800 border-slate-700">
+        <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.3s' }}>
           <CardHeader>
-            <CardTitle className="text-white">Modelos Instalados</CardTitle>
-            <CardDescription className="text-slate-400">
-              {models.length} modelo(s) instalado(s)
+            <CardTitle className="text-cyan-300 font-mono tracking-wider">INSTALLED MODELS</CardTitle>
+            <CardDescription className="text-cyan-400/60">
+              {models.length} MODEL(S) INSTALLED
             </CardDescription>
           </CardHeader>
           <CardContent>
             {loading ? (
-              <div className="text-center py-8 text-slate-400">Carregando...</div>
+              <div className="text-center py-8 text-cyan-400/60 font-mono">LOADING...</div>
             ) : models.length === 0 ? (
-              <div className="text-center py-8 text-slate-400">
-                Nenhum modelo instalado. Baixe um modelo acima para começar.
+              <div className="text-center py-8 text-cyan-400/60">
+                <p className="font-mono mb-4">NO MODELS INSTALLED</p>
+                <p className="text-sm">Download a model above to get started</p>
               </div>
             ) : (
               <div className="space-y-3">
                 {models.map((model) => (
-                  <div key={model.name} className="flex items-center justify-between p-4 bg-slate-700 rounded-lg">
+                  <div key={model.name} className="flex items-center justify-between p-4 jarvis-border bg-cyan-950/20">
                     <div className="flex-1">
-                      <div className="text-white font-medium">{model.name}</div>
-                      <div className="text-slate-400 text-sm">
+                      <div className="text-cyan-300 font-mono font-medium">{model.name}</div>
+                      <div className="text-cyan-400/60 text-sm font-mono">
                         {formatSize(model.size)} • {new Date(model.modified_at).toLocaleDateString('pt-BR')}
                       </div>
                     </div>
@@ -186,8 +187,9 @@ export default function ModelsPage() {
                       variant="destructive"
                       onClick={() => handleDelete(model.name)}
                       disabled={deleting !== null}
+                      className="bg-red-600/20 hover:bg-red-600/40 border border-red-500/50 text-red-300 hover:text-red-200 jarvis-border transition-all"
                     >
-                      {deleting === model.name ? 'Removendo...' : <Trash2 className="h-4 w-4" />}
+                      {deleting === model.name ? 'REMOVING...' : <Trash2 className="h-4 w-4" />}
                     </Button>
                   </div>
                 ))}
