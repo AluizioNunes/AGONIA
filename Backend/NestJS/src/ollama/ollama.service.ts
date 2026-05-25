@@ -54,4 +54,19 @@ export class OllamaService {
       throw new HttpException('Failed to generate', 500);
     }
   }
+
+  async pullModel(model: string) {
+    try {
+      const response = await firstValueFrom(
+        this.httpService.post(
+          `${this.ollamaUrl}/api/pull`,
+          { name: model, stream: false },
+          { timeout: 300000 }, // 5 minutos timeout
+        ),
+      );
+      return { status: 'success', model };
+    } catch (error) {
+      throw new HttpException('Failed to pull model', 500);
+    }
+  }
 }

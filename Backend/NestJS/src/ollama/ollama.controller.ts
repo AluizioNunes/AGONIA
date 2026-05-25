@@ -24,4 +24,9 @@ export class OllamaController {
   async generate(@Body() body: { model: string; prompt: string; stream?: boolean }) {
     return this.ollamaService.generate(body.model, body.prompt, body.stream || false);
   }
+
+  @Post('pull')
+  async pullModel(@Body() body: { model: string }) {
+    return this.ollamaService.pullModel(body.model);
+  }
 }

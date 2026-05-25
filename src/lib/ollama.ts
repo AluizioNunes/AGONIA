@@ -1,5 +1,6 @@
 // API Client para Ollama
 const OLLAMA_BASE_URL = process.env.NEXT_PUBLIC_OLLAMA_URL || 'http://localhost:11434';
+const FASTAPI_BASE_URL = process.env.NEXT_PUBLIC_FASTAPI_URL || 'http://localhost:8000';
 
 export interface OllamaModel {
   name: string;
@@ -53,10 +54,11 @@ class OllamaClient {
   }
 
   async pullModel(name: string): Promise<void> {
-    const response = await fetch(`${this.baseUrl}/api/pull`, {
+    // Usa o backend FastAPI para baixar modelos customizados
+    const response = await fetch(`${FASTAPI_BASE_URL}/api/models/pull`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, stream: false }),
+      body: JSON.stringify({ model: name }),
     });
 
     if (!response.ok) {

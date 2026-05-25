@@ -35,8 +35,10 @@ services:
       - "3000:3000"
     environment:
       - NEXT_PUBLIC_OLLAMA_URL=http://ollama:11434
+      - NEXT_PUBLIC_FASTAPI_URL=http://backend-fastapi:8000
     depends_on:
       - ollama
+      - backend-fastapi
     networks:
       - agonia-network
 

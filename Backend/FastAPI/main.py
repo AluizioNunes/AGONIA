@@ -17,6 +17,9 @@ class ModelInfo(BaseModel):
     size: int
     modified_at: str
 
+class PullModelRequest(BaseModel):
+    model: str
+
 # Lifespan
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -85,6 +88,20 @@ async def generate(request: ChatRequest):
             )
             response.raise_for_status()
             return response.json()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+# Baixar Modelo Customizado
+@app.post("/api/models/pull")
+async def pull_model(request: PullModelRequest):
+    try:
+        async with httpx.AsyncClient(timeout=300.0) as client:
+            response = await client.post(
+                f"{app.state.ollama_url}/api/pull",
+                json={"name": request.model, "stream": False}
+            )
+            response.raise_for_status()
+            return {"status": "success", "model": request.model}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
