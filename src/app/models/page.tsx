@@ -13,12 +13,32 @@ import Link from 'next/link';
 import { Trash2, Download, ArrowLeft } from 'lucide-react';
 
 const RECOMMENDED_MODELS = [
-  { name: 'deepseek-coder-v2', description: 'LLM principal para código', size: '~9GB' },
-  { name: 'qwen2.5-coder:7b', description: 'LLM rápido para tarefas simples', size: '~5GB' },
-  { name: 'deepseek-r1:14b', description: 'Raciocínio e debugging', size: '~10GB' },
-  { name: 'nomic-embed-text', description: 'Embeddings para RAG', size: '~274MB' },
-  { name: 'mxbai-embed-large', description: 'Embeddings de alta qualidade', size: '~670MB' },
-  { name: 'starcoder2:3b', description: 'Modelo leve para hardware limitado', size: '~2GB' },
+  // Qwen Family
+  { name: 'qwen2.5-coder:7b', description: 'Velocidade / Computadores padrão', size: '~4.7 GB' },
+  { name: 'qwen2.5-coder:32b', description: 'Código complexo (se GPU permitir)', size: '~19 GB' },
+  { name: 'qwen3-coder:30b', description: 'O melhor assistente geral de código local', size: '~19 GB' },
+  { name: 'qwen3.5', description: 'Próxima geração Qwen', size: '~15 GB' },
+  { name: 'qwen3.6', description: 'Qwen mais recente', size: '~16 GB' },
+  
+  // DeepSeek Family
+  { name: 'deepseek-coder-v2', description: 'LLM principal para código', size: '~9 GB' },
+  { name: 'deepseek-coder-v2:16b', description: 'Excelente custo-benefício em MoE', size: '~9.0 GB' },
+  { name: 'deepseek-r1:8b', description: 'Raciocínio lógico e depuração leve', size: '~4.9 GB' },
+  { name: 'deepseek-r1:14b', description: 'Raciocínio e debugging', size: '~10 GB' },
+  { name: 'deepseek-r1:32b', description: 'Engenharia reversa e algoritmos complexos', size: '~20 GB' },
+  { name: 'deepseek-v4-pro', description: 'Modelo flagship completo da DeepSeek', size: '~40 GB' },
+  
+  // Other Models
+  { name: 'kimi-k2.6-thinking', description: 'Agentic Coding - 256K tokens contexto', size: '~15 GB' },
+  { name: 'glm-5.1', description: 'Zhipu AI - 200K contexto, licença MIT', size: '~18 GB' },
+  { name: 'llama4-scout', description: 'Meta - Velocidade otimizada, function calling', size: '~12 GB' },
+  { name: 'devstral-small-2', description: 'Integração com ferramentas e agentes', size: '~12 GB' },
+  { name: 'ollama-maverick', description: 'Modelo especializado Ollama', size: '~8 GB' },
+  
+  // Embeddings
+  { name: 'nomic-embed-text', description: 'Embeddings para RAG', size: '~274 MB' },
+  { name: 'mxbai-embed-large', description: 'Embeddings de alta qualidade', size: '~670 MB' },
+  { name: 'starcoder2:3b', description: 'Modelo leve para hardware limitado', size: '~2 GB' },
 ];
 
 export default function ModelsPage() {
