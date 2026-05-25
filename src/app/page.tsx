@@ -123,6 +123,11 @@ export default function Home() {
                     OPEN WEBUI
                   </Button>
                 </a>
+                <Link href="/deploy">
+                  <Button className="w-full bg-red-600/20 hover:bg-red-600/40 border border-red-500/50 text-red-300 hover:text-red-200 jarvis-border-red transition-all">
+                    DEPLOY
+                  </Button>
+                </Link>
               </div>
             </CardContent>
           </Card>

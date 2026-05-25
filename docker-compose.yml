@@ -83,6 +83,8 @@ services:
       - "8000:8000"
     environment:
       - OLLAMA_URL=http://ollama:11434
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - ollama
     networks:
