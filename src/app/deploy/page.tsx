@@ -21,7 +21,16 @@ interface DeployLog {
   type: 'info' | 'success' | 'error' | 'warning';
 }
 
-const FASTAPI_URL = process.env.NEXT_PUBLIC_FASTAPI_URL || 'http://localhost:8000';
+const getFastApiUrl = () => {
+  if (typeof window !== 'undefined') {
+    const savedConfig = localStorage.getItem('agonia-config');
+    if (savedConfig) {
+      const config = JSON.parse(savedConfig);
+      return config.fastapiUrl || process.env.NEXT_PUBLIC_FASTAPI_URL || 'http://localhost:8001';
+    }
+  }
+  return process.env.NEXT_PUBLIC_FASTAPI_URL || 'http://localhost:8001';
+};
 
 export default function DeployPage() {
   const [services, setServices] = useState<Service[]>([]);
@@ -57,7 +66,7 @@ export default function DeployPage() {
   const loadServices = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${FASTAPI_URL}/api/deploy/services`);
+      const response = await fetch(`${getFastApiUrl()}/api/deploy/services`);
       const data = await response.json();
       setServices(data.services || []);
     } catch (error) {
@@ -76,7 +85,7 @@ export default function DeployPage() {
       addLog(`Iniciando deploy do serviço ${serviceName}...`, 'info');
       setProgress(10);
 
-      const response = await fetch(`${FASTAPI_URL}/api/deploy/service`, {
+      const response = await fetch(`${getFastApiUrl()}/api/deploy/service`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ service: serviceName, action: 'start' }),
@@ -99,7 +108,7 @@ export default function DeployPage() {
     try {
       addLog(`Parando serviço ${serviceName}...`, 'warning');
       
-      const response = await fetch(`${FASTAPI_URL}/api/deploy/service`, {
+      const response = await fetch(`${getFastApiUrl()}/api/deploy/service`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ service: serviceName, action: 'stop' }),
@@ -128,7 +137,7 @@ export default function DeployPage() {
     setLogs([]);
     addLog(`Conectando aos logs do serviço ${serviceName}...`, 'info');
 
-    const eventSource = new EventSource(`${FASTAPI_URL}/api/deploy/logs/${serviceName}`);
+    const eventSource = new EventSource(`${getFastApiUrl()}/api/deploy/logs/${serviceName}`);
     eventSourceRef.current = eventSource;
 
     eventSource.onmessage = (event) => {
