@@ -65,6 +65,9 @@ export default function IntegrationsPage() {
         testUrl = `${url}/ollama/health`;
       } else if (service === 'qdrant') {
         testUrl = `${url}/readyz`;
+      } else if (service === 'openwebui') {
+        // Open WebUI não tem endpoint de health público, vamos tentar acessar a raiz
+        testUrl = url;
       }
       const response = await fetch(testUrl, { method: 'GET' });
       setTestResults(prev => ({ ...prev, [service]: response.ok }));
