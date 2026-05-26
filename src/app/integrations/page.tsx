@@ -65,8 +65,11 @@ export default function IntegrationsPage() {
         testUrl = `${url}/ollama/health`;
       } else if (service === 'qdrant') {
         testUrl = `${url}/readyz`;
+      } else if (service === 'openwebui') {
+        // Open WebUI não tem endpoint de health público, vamos tentar acessar a raiz
+        testUrl = url;
       }
-      const response = await fetch(testUrl, { method: 'GET' });
+      const response = await fetch(testUrl, { method: 'GET', mode: 'cors' });
       setTestResults(prev => ({ ...prev, [service]: response.ok }));
     } catch (error) {
       setTestResults(prev => ({ ...prev, [service]: false }));
@@ -253,7 +256,7 @@ export default function IntegrationsPage() {
                 <Globe className="h-5 w-5" />
                 OPEN WEBUI
               </CardTitle>
-              <CardDescription className="text-cyan-400/60">Interface Web (acesso direto pelo navegador)</CardDescription>
+              <CardDescription className="text-cyan-400/60">Interface Web</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
@@ -264,9 +267,20 @@ export default function IntegrationsPage() {
                   className="bg-cyan-950/20 border-cyan-500/50 text-cyan-300 jarvis-border"
                 />
               </div>
-              <p className="text-xs text-cyan-400/60">
-                Acesse diretamente pelo navegador para usar o Open WebUI
-              </p>
+              <div className="flex gap-2">
+                <Button
+                  onClick={() => testConnection('openwebui', config.openWebuiUrl)}
+                  disabled={testing === 'openwebui'}
+                  className="bg-cyan-600/20 hover:bg-cyan-600/40 border border-cyan-500/50 text-cyan-300 hover:text-cyan-200 jarvis-border transition-all"
+                >
+                  {testing === 'openwebui' ? <RefreshCw className="h-4 w-4 animate-spin" /> : 'Testar'}
+                </Button>
+                {testResults.openwebui !== undefined && (
+                  <span className={testResults.openwebui ? 'text-green-400' : 'text-red-400'}>
+                    {testResults.openwebui ? '✓ Conectado' : '✗ Falhou'}
+                  </span>
+                )}
+              </div>
             </CardContent>
           </Card>
 

@@ -48,7 +48,7 @@ services:
     environment:
       - OLLAMA_BASE_URL=http://ollama:11434
       - WEBUI_NAME=AgonIA
-      - WEBUI_CORS_ORIGINS=*
+      - CORS_ALLOW_ORIGIN=*
     depends_on:
       - ollama
     networks:
