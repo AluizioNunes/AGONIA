@@ -46,6 +46,37 @@ export default function Home() {
           <p className="text-cyan-300/70 text-lg tracking-wider">J.A.R.V.I.S. INTERFACE - AI MANAGEMENT SYSTEM</p>
         </header>
 
+        {/* Navigation Menu */}
+        <nav className="mb-12 jarvis-fade-in" style={{ animationDelay: '0.05s' }}>
+          <div className="flex flex-wrap gap-3 p-4 jarvis-border bg-cyan-950/20">
+            <Link href="/models">
+              <Button variant="ghost" className="text-cyan-300 hover:bg-cyan-950/50 jarvis-border transition-all">
+                MODELOS
+              </Button>
+            </Link>
+            <Link href="/chat">
+              <Button variant="ghost" className="text-cyan-300 hover:bg-cyan-950/50 jarvis-border transition-all">
+                CHAT
+              </Button>
+            </Link>
+            <Link href="/deploy">
+              <Button variant="ghost" className="text-cyan-300 hover:bg-cyan-950/50 jarvis-border transition-all">
+                DEPLOY
+              </Button>
+            </Link>
+            <Link href="/monitor">
+              <Button variant="ghost" className="text-cyan-300 hover:bg-cyan-950/50 jarvis-border transition-all">
+                MONITORAMENTO
+              </Button>
+            </Link>
+            <Link href="/integrations">
+              <Button variant="ghost" className="text-purple-300 hover:bg-purple-950/50 jarvis-border-purple transition-all">
+                INTEGRAÇÕES
+              </Button>
+            </Link>
+          </div>
+        </nav>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           <Card className="jarvis-border jarvis-glow jarvis-fade-in" style={{ animationDelay: '0.1s' }}>
             <CardHeader className="pb-3">

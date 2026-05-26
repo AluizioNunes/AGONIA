@@ -1,7 +1,6 @@
 #!/bin/bash
 # ============================================================
 # AgonIA — Health Check e Status Completo
-# Servidor: 10.10.255.111
 #
 # Uso:
 #   bash status.sh          → status completo
@@ -15,7 +14,7 @@ CYAN='\033[0;36m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-SERVER_IP="10.10.255.111"
+SERVER_IP="${SERVER_IP:-$(hostname -I | awk '{print $1}')}"
 
 check_service() {
     local nome="$1"

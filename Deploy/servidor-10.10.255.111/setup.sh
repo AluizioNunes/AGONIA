@@ -27,10 +27,10 @@ CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
 # --- Variáveis ---
-SERVER_IP="10.10.255.111"
-DATA_ROOT="/data/agonia"
-DEPLOY_DIR="/opt/agonia"
-DOCKER_COMPOSE_VERSION="v2.24.5"
+SERVER_IP="${SERVER_IP:-$(hostname -I | awk '{print $1}')}"
+DATA_ROOT="${DATA_ROOT:-/data/agonia}"
+DEPLOY_DIR="${DEPLOY_DIR:-/opt/agonia}"
+DOCKER_COMPOSE_VERSION="${DOCKER_COMPOSE_VERSION:-v2.24.5}"
 
 # ============================================================
 log()    { echo -e "${GREEN}[✓]${NC} $1"; }

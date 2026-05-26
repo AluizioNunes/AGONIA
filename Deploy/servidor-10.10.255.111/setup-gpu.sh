@@ -1,7 +1,6 @@
 #!/bin/bash
 # ============================================================
 # AgonIA — Habilitar GPU NVIDIA (executar APÓS setup.sh)
-# Servidor: 10.10.255.111
 #
 # Execute apenas se o servidor tiver GPU NVIDIA:
 #   sudo bash setup-gpu.sh

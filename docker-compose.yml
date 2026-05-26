@@ -7,9 +7,9 @@ services:
     container_name: agonia-ollama
     restart: unless-stopped
     ports:
-      - "11434:11434"
+      - "${OLLAMA_PORT:-11434}:11434"
     volumes:
-      - /data/ollama:/root/.ollama
+      - ${OLLAMA_DATA_PATH:-/data/ollama}:/root/.ollama
     environment:
       - OLLAMA_HOST=0.0.0.0
       - OLLAMA_KEEP_ALIVE=10m
@@ -25,7 +25,7 @@ services:
     container_name: agonia-frontend
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "${FRONTEND_PORT:-3000}:3000"
     environment:
       - NEXT_PUBLIC_OLLAMA_URL=http://ollama:11434
       - NEXT_PUBLIC_FASTAPI_URL=http://backend-fastapi:8000
@@ -41,7 +41,7 @@ services:
     container_name: agonia-open-webui
     restart: unless-stopped
     ports:
-      - "8080:8080"
+      - "${OPEN_WEBUI_PORT:-8080}:8080"
     volumes:
       - openwebui_data:/app/backend/data
     environment:
@@ -58,10 +58,10 @@ services:
     container_name: agonia-qdrant
     restart: unless-stopped
     ports:
-      - "6333:6333"
-      - "6334:6334"
+      - "${QDRANT_PORT:-6333}:6333"
+      - "${QDRANT_GRPC_PORT:-6334}:6334"
     volumes:
-      - qdrant_data:/qdrant/storage
+      - ${QDRANT_DATA_PATH:-/data/qdrant}:/qdrant/storage
     networks:
       - agonia-network
 
@@ -73,7 +73,7 @@ services:
     container_name: agonia-backend-fastapi
     restart: unless-stopped
     ports:
-      - "8001:8000"
+      - "${FASTAPI_PORT:-8001}:8000"
     environment:
       - OLLAMA_URL=http://ollama:11434
     volumes:
@@ -91,7 +91,7 @@ services:
     container_name: agonia-backend-nestjs
     restart: unless-stopped
     ports:
-      - "3001:3001"
+      - "${NESTJS_PORT:-3001}:3001"
     environment:
       - OLLAMA_URL=http://ollama:11434
     depends_on:
@@ -105,8 +105,8 @@ services:
     container_name: agonia-nginx
     restart: unless-stopped
     ports:
-      - "80:80"
-      - "443:443"
+      - "${NGINX_HTTP_PORT:-80}:80"
+      - "${NGINX_HTTPS_PORT:-443}:443"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/ssl:/etc/nginx/ssl:ro
@@ -119,8 +119,6 @@ services:
       - production
 
 volumes:
-  qdrant_data:
-    driver: local
   openwebui_data:
     driver: local
 

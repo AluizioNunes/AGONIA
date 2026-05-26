@@ -1,6 +1,23 @@
 // API Client para Ollama
-const OLLAMA_BASE_URL = process.env.NEXT_PUBLIC_OLLAMA_URL || 'http://localhost:11434';
-const FASTAPI_BASE_URL = process.env.NEXT_PUBLIC_FASTAPI_URL || 'http://localhost:8000';
+const getConfig = () => {
+  if (typeof window !== 'undefined') {
+    const savedConfig = localStorage.getItem('agonia-config');
+    if (savedConfig) {
+      const config = JSON.parse(savedConfig);
+      return {
+        OLLAMA_BASE_URL: config.ollamaUrl || process.env.NEXT_PUBLIC_OLLAMA_URL || 'http://localhost:11434',
+        FASTAPI_BASE_URL: config.fastapiUrl || process.env.NEXT_PUBLIC_FASTAPI_URL || 'http://localhost:8001',
+      };
+    }
+  }
+  return {
+    OLLAMA_BASE_URL: process.env.NEXT_PUBLIC_OLLAMA_URL || 'http://localhost:11434',
+    FASTAPI_BASE_URL: process.env.NEXT_PUBLIC_FASTAPI_URL || 'http://localhost:8001',
+  };
+};
+
+const getBaseUrl = () => getConfig().OLLAMA_BASE_URL;
+const getFastApiUrl = () => getConfig().FASTAPI_BASE_URL;
 
 export interface OllamaModel {
   name: string;
@@ -29,8 +46,8 @@ export interface GenerateResponse {
 class OllamaClient {
   private baseUrl: string;
 
-  constructor(baseUrl: string = OLLAMA_BASE_URL) {
-    this.baseUrl = baseUrl;
+  constructor(baseUrl?: string) {
+    this.baseUrl = baseUrl || getBaseUrl();
   }
 
   private async request<T>(endpoint: string, options?: RequestInit): Promise<T> {
@@ -55,7 +72,7 @@ class OllamaClient {
 
   async pullModel(name: string): Promise<void> {
     // Usa o backend FastAPI para baixar modelos customizados
-    const response = await fetch(`${FASTAPI_BASE_URL}/api/models/pull`, {
+    const response = await fetch(`${getFastApiUrl()}/api/models/pull`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ model: name }),

@@ -1,7 +1,6 @@
 #!/bin/bash
 # ============================================================
 # AgonIA — Instalação de Modelos LLM e Embeddings
-# Servidor: 10.10.255.111
 #
 # Execute APÓS o setup.sh:
 #   bash instalar-modelos.sh
