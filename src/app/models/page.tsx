@@ -55,8 +55,16 @@ export default function ModelsPage() {
   const [filterFunction, setFilterFunction] = useState<string>('all');
   const [sortBy, setSortBy] = useState<string>('name');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [configWarning, setConfigWarning] = useState(false);
 
   useEffect(() => {
+    // Check if configuration exists
+    if (typeof window !== 'undefined') {
+      const savedConfig = localStorage.getItem('agonia-config');
+      if (!savedConfig) {
+        setConfigWarning(true);
+      }
+    }
     loadModels();
   }, []);
 
@@ -144,7 +152,7 @@ export default function ModelsPage() {
   const functions = [...new Set(RECOMMENDED_MODELS.map(m => m.function))];
 
   return (
-    <div className="min-h-screen w-full">
+    <div className="min-h-screen w-full overflow-y-auto">
       <div className="w-full px-4 py-8">
         <header className="mb-12 flex items-center gap-4 jarvis-fade-in">
           <Link href="/">
@@ -157,6 +165,16 @@ export default function ModelsPage() {
             <p className="text-cyan-400/60 tracking-wider">INSTALL, REMOVE AND MANAGE LLM MODELS</p>
           </div>
         </header>
+
+        {configWarning && (
+          <Alert className="mb-6 bg-yellow-900/20 border-yellow-500/50 jarvis-border">
+            <AlertDescription className="text-yellow-400 uppercase">
+              <Link href="/integrations" className="underline hover:text-yellow-300">
+                CONFIGURE AS INTEGRAÇÕES PRIMEIRO - CLIQUE AQUI PARA CONFIGURAR URLS DO SERVIDOR
+              </Link>
+            </AlertDescription>
+          </Alert>
+        )}
 
         {error && (
           <Alert className="mb-6 bg-red-900/20 border-red-500/50 jarvis-border">
