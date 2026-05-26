@@ -99,7 +99,7 @@ services:
     networks:
       - agonia-network
 
-  # Nginx - Reverse Proxy (opcional, para produção)
+  # Nginx - Reverse Proxy
   nginx:
     image: nginx:alpine
     container_name: agonia-nginx
@@ -115,8 +115,6 @@ services:
       - ollama
     networks:
       - agonia-network
-    profiles:
-      - production
 
 volumes:
   openwebui_data:
