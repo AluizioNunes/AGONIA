@@ -55,7 +55,18 @@ export default function IntegrationsPage() {
   const testConnection = async (service: string, url: string) => {
     setTesting(service);
     try {
-      const response = await fetch(url, { method: 'GET' });
+      let testUrl = url;
+      // Adicionar endpoint correto para cada serviço
+      if (service === 'ollama') {
+        testUrl = `${url}/api/tags`;
+      } else if (service === 'fastapi') {
+        testUrl = `${url}/health`;
+      } else if (service === 'nestjs') {
+        testUrl = `${url}/ollama/health`;
+      } else if (service === 'qdrant') {
+        testUrl = `${url}/readyz`;
+      }
+      const response = await fetch(testUrl, { method: 'GET' });
       setTestResults(prev => ({ ...prev, [service]: response.ok }));
     } catch (error) {
       setTestResults(prev => ({ ...prev, [service]: false }));
