@@ -36,9 +36,15 @@ services:
     networks:
       - agonia-network
 
-  # Open WebUI - Segundo Frontend
+  # Open WebUI - Segundo Frontend (código fonte local)
   open-webui:
-    image: ghcr.io/open-webui/open-webui:main
+    build:
+      context: ./Backend/OpenWebUI
+      dockerfile: Dockerfile
+      args:
+        - USE_OLLAMA=false
+        - USE_CUDA=false
+        - USE_SLIM=false
     container_name: agonia-open-webui
     restart: unless-stopped
     ports:
